@@ -4,6 +4,7 @@ import {LoginService} from  '../login.service';
 
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-component',
@@ -12,16 +13,27 @@ import 'rxjs/add/operator/map';
 })
 
 export class LoginComponentComponent implements OnInit {
-  getData:Array;
-  profile;
-  constructor (private _login:LoginService){}
+
+  loginUser(e){
+    e.preventDefault();
+    var username = e.target.elements[0].value;
+    var password = e.target.elements[1].value;
+    this.user.setUserLoggedIn(username, password);
+    if(username =='admin' && password == 'admin'){
+
+      this.router.navigate(['todoList'])
+    }
+  }
+
+
+
+
+  constructor (private router: Router, private user:LoginService){}
 
 
   ngOnInit():void {
 
-    console.log("json"+this._login.Getlogin());
-    this.profile=this._login.Getlogin().subscribe( data=>this.getData = data);
-    console.log(this.getData);
+
   }
 
 

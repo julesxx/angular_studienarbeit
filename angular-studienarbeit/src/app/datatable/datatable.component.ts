@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {LoginService} from "../login.service";
 
 @Component({
   selector: 'app-datatable',
@@ -10,9 +12,9 @@ export class DatatableComponent implements OnInit {
 
   private data;
 
-  getData:Array;
+  getData:Array<string>;
 
-  constructor (private http:HttpClient){}
+  constructor (private user: LoginService, private http:HttpClient){}
 
   Getlogin(){
     //this.httpService.getUserData()
@@ -25,7 +27,8 @@ export class DatatableComponent implements OnInit {
   }
 
   ngOnInit():void {
-    this.Getlogin();
 
+    this.Getlogin();
+    console.log(this.Getlogin());
   }
 }

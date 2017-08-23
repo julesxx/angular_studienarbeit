@@ -11,16 +11,14 @@ import { LoginComponentComponent } from './login-component/login-component.compo
 
 import { RouterModule, Routes } from '@angular/router';
 import {LoginService} from "./login.service";
+import {AuthguardGuard} from "./authguard.guard";
 
 
 
 const appRoutes: Routes = [
-  { path: 'todoList', component: DatatableComponent },
-  { path: 'contact',      component:LoginComponentComponent},
-  { path: '',
-    redirectTo: '/contact',
-    pathMatch: 'full'
-  }
+  { path: 'todoList', canActivate:[AuthguardGuard], component: DatatableComponent },
+  {   path: '',  component:LoginComponentComponent},
+
   ]
 @NgModule({
   declarations: [
@@ -36,7 +34,7 @@ const appRoutes: Routes = [
       appRoutes
     )
   ],
-  providers: [LoginService],
+  providers: [LoginService, AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
