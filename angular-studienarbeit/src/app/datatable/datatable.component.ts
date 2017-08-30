@@ -12,7 +12,7 @@ export class DatatableComponent implements OnInit {
 
   private data;
 
-  getData:Array<string>;
+  getData:any;
 
   constructor (private user: LoginService, private http:HttpClient){}
 
